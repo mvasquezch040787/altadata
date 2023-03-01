@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+    </h:head>
+    <h:body> 
+        <ui:composition template="/WEB-INF/plantilla.xhtml">
+            <ui:define name="contenido">
+                <p:tabView id="tab">
+                    <p:tab title="REGISTRAR CLIENTE">
+                        <h:form id="form_registrar">
+                            <p:growl id="growl" showDetail="true" sticky="true"/>
+                            <p:panel id="pnregistrar" header="REGISTRO DE CLIENTES - ALTADATA">
+                                <p:fieldset legend="DATOS GENERALES">
+                                    <p:panelGrid columns="2" style=" border: 0px transparent">
+                                        <h:outputText value="RUT*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="rut" required="true" requiredMessage="Rut Obligatorio"  
+                                                         validatorMessage="El Numero de Caracteres debe ser Mayor a 2 y Menor que 10" maxlength="10" size="30" value="#{cClientes.objectoRegistra.rut_cliente}" placeholder="Ingrese RUT del Cliente">
+                                            <f:validateLength minimum="3" maximum="10"/>
+                                            </p:inputText>
+                                        <p:message for="rut"/>
+                                        </h:panelGroup> 
+                                        <h:outputText value="Apellidos y Nombres*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="apellidos_nombres_cliente" required="true" requiredMessage="Apellidos y Nombres Obligatorio"  
+                                                         validatorMessage="El Numero de Caracteres debe ser Mayor a 2 y Menor que 100" maxlength="100" size="90" value="#{cClientes.objectoRegistra.apellidos_nombres}" placeholder="Ingrese Apellidos y Nombres del Cliente">
+                                            <f:validateLength minimum="3" maximum="50"/>
+                                            </p:inputText>
+                                        <p:message for="apellidos_nombres_cliente"/>
+                                        </h:panelGroup> 
+                                        <h:outputText value="Razón Social*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="razon_social" required="true" requiredMessage="Razón Social"  
+                                                         validatorMessage="El Numero de Caracteres debe ser Mayor a 2 y Menor que 100" maxlength="100" size="90" value="#{cClientes.objectoRegistra.razon_social}" placeholder="Ingrese Razón Social">
+                                            <f:validateLength minimum="3" maximum="100"/>
+                                            </p:inputText>
+                                        <p:message for="razon_social"/>
+                                        </h:panelGroup> 
+                                         <h:outputText value="Dirección*"/>
+                                       <h:panelGroup>
+                                           <p:inputText id="direccion" required="true" requiredMessage="Dirección es Obligatoria" 
+                                                        validatorMessage="El Numero de Caracteres debe ser Mayor a 2 y Menor que 10" maxlength="50" size="90" value="#{cClientes.objectoRegistra.direccion}" placeholder="Ingrese Dirección">
+                                            <f:validateLength minimum="3" maximum="50"/>
+                                            </p:inputText>
+                                        <p:message for="direccion"/>
+                                        </h:panelGroup> 
+                                         <h:outputText value="Telefono"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="telefono" value="#{cClientes.objectoRegistra.telefono}" placeholder="Ingresar Telefono" />
+                                                <p:message for="telefono"/>
+                                        </h:panelGroup> 
+                                         
+                                          <h:outputText value="Correo Electrónico"/>
+                                        <h:panelGroup>
+                                            
+                                        <h:panelGroup>
+                                            <p:inputText required="false" id="email" validatorMessage="Email " maxlength="60" size="90" value="#{cClientes.objectoRegistra.correo_electronico}" placeholder="Ingresar Email">
+                                           
+                                            </p:inputText>
+                                            <p:message for="email"/>
+                                        </h:panelGroup>
+
+                                        </h:panelGroup> 
+                                             
+                                       <h:outputText value="Nombre del Contacto*"/>
+                                       <h:panelGroup>
+                                           <p:inputText id="contacto" required="false"
+                                                        maxlength="50" size="90" value="#{cClientes.objectoRegistra.nombre_contacto}" placeholder="Ingrese Nombre del Contacto">
+                                            <!--<f:validateLength minimum="3" maximum="50"/>-->
+                                            </p:inputText>
+                                        <!--<p:message for="r"/>-->
+                                        </h:panelGroup> 
+                                       <h:outputText value="Telefono del Contacto*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="telefono_contacto"  value="#{cClientes.objectoRegistra.telefono_contacto}" placeholder="Ingresar Telefono" />
+                                                <p:message for="telefono_contacto"/>
+                                        </h:panelGroup> 
+                                    </p:panelGrid>
+                                    <p:commandButton value="REGISTRAR" update="form_registrar" actionListener="#{cClientes.doRegistrar()}" />
+                                </p:fieldset>
+                            </p:panel>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="LISTAR">
+                         <h:form id="form_listar">
+                            <p:growl id="grow2" showDetail="true" sticky="true"/>
+                            <p:panel id="pnlistar" header="LISTA DE CLIENTES - ALTADATA" styleClass="border">
+                                
+                                <p:commandButton id="btnlistar" value="LISTAR CLIENTES" update="form_listar" icon="ui-icon-search" actionListener="#{cClientes.doListar()}" />
+
+                                
+                                <p:dataTable var="lc" value="#{cClientes.arrayList}" rendered="#{cClientes.size ne '0'}" rows="10" paginator="true"
+                                           selectionMode="single" selection="#{cClientes.objectoSelecciona}" rowKey="#{lc.rut_cliente}" id="tablacliente"  style=" font-size: small " >
+                                                                       
+                                    
+                                    <p:column headerText="RUT" style="width:6px;text-align:  left">
+                                        <h:outputText value="#{lc.rut_cliente}"/>
+                                    </p:column>
+                                    <p:column headerText="APELLIDOS Y NOMBRES" style="width:50px;text-align: left">                                        
+                                        <h:outputText value="#{lc.apellidos_nombres}" />
+                                    </p:column>
+                                  <p:column headerText="RAZÓN SOCIAL" style="width:20px;text-align: left">                                        
+                                      <h:outputText value="#{lc.razon_social}" />
+                                    </p:column>
+                                  <p:column headerText="DIRECCIÓN" style="width:50px;text-align: left">                                        
+                                      <h:outputText value="#{lc.direccion}" />
+                                    </p:column>
+                                  <p:column headerText="TELEFONO" style="width:3px;text-align: left">                                        
+                                      <h:outputText value="#{lc.telefono}" />
+                                    </p:column>
+                                    <p:column headerText="CORREO" style="width:20px;text-align: left">                                        
+                                        <h:outputText value="#{lc.correo_electronico}" />
+                                    </p:column>
+                                  <p:column headerText="NOMBRE CONTACTO" style="width:20px;text-align: left">                                        
+                                      <h:outputText value="#{lc.nombre_contacto}" />
+                                    </p:column>
+                                  <p:column headerText="TELEFONO CONTACTO" style="width:20px;text-align: left">                                        
+                                      <h:outputText value="#{lc.telefono_contacto}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                            <p:blockUI block="pnlistar" trigger="btnlistar">
+                                    Cargando......
+                                    <p:graphicImage value="/resources/images/loading01.gif"/>
+                            </p:blockUI>
+                    </h:form>   
+                    </p:tab>
+                </p:tabView>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

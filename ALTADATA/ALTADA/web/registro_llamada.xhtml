@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+    </h:head>
+    <h:body> 
+        <ui:composition template="/WEB-INF/plantilla.xhtml">
+            <ui:define name="contenido">
+                <p:tabView id="tab">
+                    <p:tab title="REGISTRAR LLAMADA">
+                        <h:form id="form_registrar">
+                            <p:growl id="growl" showDetail="true" sticky="true"/>
+                            <p:panel id="pnregistrar" header="REGISTRO DE LLAMADAS">
+                                <p:fieldset legend="DATOS USUARIO">
+                                    <p:panelGrid columns="2" style="border: 0px transparent">
+                                    <h:outputText value="RUT Usuario*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="rut_user" value="#{cRegistro_llamada.objeto_usuario.rut_usuario}" placeholder="Ingrese RUT del Usuario">
+                                           
+                                            </p:inputText>
+                                        <p:message for="rut_user"/>
+                                        </h:panelGroup> 
+                                    </p:panelGrid>
+                                </p:fieldset>
+                                <p:fieldset  legend="DATOS DEL CLIENTE">
+                                    <p:panelGrid columns="3" style=" border: 0px transparent">
+                                        <h:outputText value="RUT Cliente*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="rut_cliente"  size="30" value="#{cRegistro_llamada.objeto_cliente.rut_cliente}" placeholder="Ingrese su RUT de Cliente">
+                                        
+                                            </p:inputText>
+                                       
+                                        </h:panelGroup> 
+                                        <p:commandButton value="BUSCAR CLIENTE" update=":tab:form_registrar" actionListener="#{cRegistro_llamada.doBuscar}" />
+                                    </p:panelGrid>
+                                    <p:panelGrid columns="2" style=" border: 0px transparent">
+                                        <h:outputText value="Apellidos y Nombres*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="apellidos_nombres_cliente"  maxlength="100" size="90" value="#{cRegistro_llamada.objeto_cliente_encontrado.apellidos_nombres}" placeholder="Ingrese Apellidos y Nombres del Cliente">
+                                            
+                                            </p:inputText>
+                                        
+                                        </h:panelGroup> 
+                                        <h:outputText value="Razón Social*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="razon_social"  maxlength="100" size="90" value="#{cRegistro_llamada.objeto_cliente_encontrado.razon_social}" placeholder="Ingrese Razón Social">
+                                            
+                                            </p:inputText>
+                                       
+                                        </h:panelGroup> 
+                                         <h:outputText value="Dirección*"/>
+                                       <h:panelGroup>
+                                           <p:inputText id="direccion"  maxlength="50" size="90" value="#{cRegistro_llamada.objeto_cliente_encontrado.direccion}" placeholder="Ingrese Dirección">
+                                            
+                                            </p:inputText>
+                                       
+                                        </h:panelGroup> 
+                                         <h:outputText value="Telefono"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="telefono" value="#{cRegistro_llamada.objeto_cliente_encontrado.telefono}" placeholder="Ingresar Telefono" />
+                                               
+                                        </h:panelGroup> 
+                                         
+                                          <h:outputText value="Correo Electrónico"/>
+                                        
+                                            
+                                        <h:panelGroup>
+                                            <p:inputText   value="#{cRegistro_llamada.objeto_cliente_encontrado.correo_electronico}" size="90" placeholder="Ingresar Email">
+                                           
+                                            </p:inputText>
+                                        </h:panelGroup>
+
+                                       <h:outputText value="Nombre del Contacto*"/>
+                                       <h:panelGroup>
+                                           <p:inputText id="contacto" required="false"
+                                                        maxlength="50" size="90" value="#{cRegistro_llamada.objeto_cliente_encontrado.nombre_contacto}" placeholder="Ingrese Nombre del Contacto">
+                                            <!--<f:validateLength minimum="3" maximum="50"/>-->
+                                            </p:inputText>
+                                        <!--<p:message for="r"/>-->
+                                        </h:panelGroup> 
+                                       <h:outputText value="Telefono del Contacto*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="telefono_contacto"  value="#{cRegistro_llamada.objeto_cliente_encontrado.telefono_contacto}" placeholder="Ingresar Telefono" />
+                                              
+                                        </h:panelGroup> 
+                                   </p:panelGrid>
+                                   
+                                </p:fieldset>
+                                 <p:fieldset legend="DATOS GENERALES DEL REGISTRO DE LLAMADA">
+                                    <p:panelGrid columns="2" style="border: 0px transparent">
+                                    <h:outputText value="Fecha y hora de llamada*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="fecha_hora_llamada" maxlength="100" size="60" value="#{cRegistro_llamada.objetoRegistra_llamada.fecha_hora_registro}" placeholder="Ingrese Fecha y Hora de Llamada">
+                                            
+                                            </p:inputText>
+                                        
+                                        </h:panelGroup> 
+                                      <h:outputText value="Incidente del Cliente*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="incidente_cliente"  maxlength="500" size="120" value="#{cRegistro_llamada.objetoRegistra_llamada.incidente_cliente}" placeholder="Ingrese Incidente">
+                                           
+                                            </p:inputText>
+                                        
+                                        </h:panelGroup> 
+                                       <h:outputText value="Indicación Entregada*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="indicacion_entregada"  maxlength="500" size="120" value="#{cRegistro_llamada.objetoRegistra_llamada.indicacion_entregada}" placeholder="Ingrese Indicación Entregada">
+                                           
+                                            </p:inputText>
+                                       
+                                        </h:panelGroup> 
+                                    </p:panelGrid>
+                                </p:fieldset>
+                                <p:commandButton value="REGISTRAR LLAMADA" update="form_registrar" actionListener="#{cRegistro_llamada.doRegistrar()}" />
+                            </p:panel>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="LISTAR HISTORIAL DE REGISTRO DE LLAMADAS DEL CLIENTE">
+                         <h:form id="form_listar">
+                            <p:growl id="grow2" showDetail="true" sticky="true"/>
+                            <p:panel id="pnlistar" header="LISTA HISTORIAL DE REGISTRO DE LLAMADAS DEL CLIENTE - ALTADATA" styleClass="border">
+                                
+                                 <p:fieldset legend="BUSCAR HISTORIAL">
+                                    <p:panelGrid columns="2" style="border: 0px transparent">
+                                    <h:outputText value="RUT Cliente*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="rut_cliente" value="#{cRegistro_llamada.objeto_cliente.rut_cliente}" placeholder="Ingrese RUT del Usuario">
+                                           
+                                            </p:inputText>
+                                        <p:message for="rut_cliente"/>
+                                        </h:panelGroup> 
+                                    </p:panelGrid>
+                                </p:fieldset>
+                                <p:commandButton id="btnlistar" value="LISTA HISTORIAL" update="form_listar" icon="ui-icon-search" actionListener="#{cRegistro_llamada.doListarHistorial()}" />
+                                <p:dataTable var="lc" value="#{cRegistro_llamada.array_reg}" rendered="#{cRegistro_llamada.size ne '0'}" rows="10" paginator="true"
+                                             selectionMode="single" selection="#{cRegistro_llamada.objectoSelecciona}" rowKey="#{lc.obj_cliente.rut_cliente}" id="tablacliente"  style="font-size: small">
+                                    <p:column headerText="RUT" style="width:10px;text-align:  left">
+                                        <h:outputText value="#{lc.obj_cliente.rut_cliente}"/>
+                                    </p:column>
+                                    <p:column headerText="APELLIDOS Y NOMBRES" style="width:50px;text-align: left">                                        
+                                        <h:outputText value="#{lc.obj_cliente.apellidos_nombres}" />
+                                    </p:column>
+                                 <p:column headerText="RAZÓN SOCIAL" style="width:30px;text-align:  left">
+                                     <h:outputText value="#{lc.obj_cliente.razon_social}"/>
+                                    </p:column>
+                                    <p:column headerText="DIRECCIÓN" style="width:50px;text-align: left">                                        
+                                        <h:outputText value="#{lc.obj_cliente.direccion}" />
+                                    </p:column>
+                                     <p:column headerText="TELEFONO" style="width:10px;text-align:  left">
+                                         <h:outputText value="#{lc.obj_cliente.telefono}"/>
+                                    </p:column>
+                                    <p:column headerText="USUARIO DE ATENCION" style="width:50px;text-align: left">                                        
+                                        <h:outputText value="#{lc.obj_user.apellidos_nombres}" />
+                                    </p:column>
+                                    <p:column headerText="FECHA Y HORA DE REGSITRO" style="width:50px;text-align: left">                                        
+                                        <h:outputText value="#{lc.fecha_hora_registro}" />
+                                    </p:column>
+                                    <p:column headerText="INCIDENTE REGISTRADO" style="width:50px;text-align: left">                                        
+                                        <h:outputText value="#{lc.incidente_cliente}" />
+                                    </p:column>
+                                    <p:column headerText="INDICACIÓN ENTREGADA" style="width:50px;text-align: left">                                        
+                                        <h:outputText value="#{lc.indicacion_entregada}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                            <p:blockUI block="pnlistar" trigger="btnlistar">
+                                    Cargando......
+                                    <p:graphicImage value="/resources/images/loading01.gif"/>
+                            </p:blockUI>
+                    </h:form>   
+                    </p:tab>
+                </p:tabView>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

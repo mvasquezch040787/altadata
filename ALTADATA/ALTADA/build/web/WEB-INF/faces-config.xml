@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+<application>
+        <resource-bundle>
+            <base-name>
+                Utils.textos
+            </base-name>
+            <var>
+                tx
+            </var>
+        </resource-bundle>
+    </application>
+    <managed-bean>
+        <managed-bean-name>cMarca</managed-bean-name>
+        <managed-bean-class>Controlers.CMarca</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>cClientes</managed-bean-name>
+        <managed-bean-class>Controlers.CClientes</managed-bean-class>
+    
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cUser</managed-bean-name>
+        <managed-bean-class>Controlers.CUser</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cRegistro_llamada</managed-bean-name>
+        <managed-bean-class>Controlers.CRegistro_llamada</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+</faces-config>

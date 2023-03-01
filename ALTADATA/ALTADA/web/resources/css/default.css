@@ -1,0 +1,95 @@
+body{
+	//background-color: #000000;		
+	//font-family: Verdana,Arial,Helvetica,sans-serif;	
+        //font-family: Verdana,Arial,sans-serif;
+        font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
+	font-size: 14px;
+        text-align : justify;        
+        -webkit-font-smoothing: antialiased;
+}
+.ui-widget, .ui-widget .ui-widget {
+    //font-size: 95% !important;
+   // font-family: Verdana,Arial,sans-serif;
+    //font-size: 12px;
+     font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
+ }
+ 
+.ui-datatable .ui-button{
+    float: left;
+ }
+ 
+.admin-dashboard-button{
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+ }
+ 
+ .userDataTableStyle{
+    margin-left:  5px;
+    margin-right: 5px;
+    margin-top: 0;
+ }
+ 
+ .loginPanelStyle{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    margin-top: 15%;
+ }
+ 
+ .userFormStyle{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+ }
+ 
+ .ui-selectmanymenu{
+    width: 100% !important; 
+    overflow: hidden !important;
+ }
+ .ui-corner-top {
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px; 
+  border-top-left-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top-right-radius: 0px; 
+}
+
+.ui-corner-all {
+  -moz-border-radius: 0px;
+ -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.ui-datatable tbody td {
+  border-color: inherit;
+  font-size: 12px;
+}
+
+tdsizetable {
+    font-size: 12px;
+}
+
+.titulo {
+    font-size: 30px;
+    color: #041245;
+    
+}
+.fondotitulo {
+    background-color: #aed0ea;
+}
+.ui-datatable-odd {
+    background: none repeat scroll 0px 0px #F2F5F9;
+}
+.cabezera {
+    float: right;
+}
+.ui-widget-header {
+  background: linear-gradient(#ADD5EA,#D2E9FF);
+  outline: 0;
+  border: 1px solid #1F7AB2;
+  color: #000000;
+  text-shadow: 0 -1px 2px rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+}

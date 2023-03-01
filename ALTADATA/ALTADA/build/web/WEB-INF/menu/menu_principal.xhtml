@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>        
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <h:form>
+                <p:panelMenu>
+                    <p:submenu label="OPERACIONES">
+                      <p:menuitem value="REGISTRO DE LLAMADAS" url="registro_llamada.dt" icon="ui-icon-extlink"></p:menuitem> 
+                    </p:submenu>
+                    <p:submenu label="MANTENIMIENTO">
+                        <p:menuitem value="USUARIO" url="user.dt" icon="ui-icon-extlink"></p:menuitem>
+                        <p:menuitem value="CLIENTE" url="clientes.dt" icon="ui-icon-extlink"></p:menuitem>   
+                    </p:submenu>       
+                </p:panelMenu>
+              
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>

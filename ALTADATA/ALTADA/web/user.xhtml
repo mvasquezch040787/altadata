@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        
+    </h:head>
+    <h:body> 
+        <ui:composition template="/WEB-INF/plantilla.xhtml">
+            <ui:define name="contenido">
+                <p:tabView id="tab">
+                    
+                    <p:tab title="REGISTRAR USUARIO">
+                        <h:form id="form_registrar">
+                            <p:growl id="growl" showDetail="true" sticky="true"/>
+                            <p:panel id="pnregistrar" header="REGISTRAR">
+                                <p:fieldset legend="DATOS GENERALES">
+                                    <p:panelGrid columns="2">
+                                        <h:outputText  value="RUT"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="rut" required="true" requiredMessage="Rut es Obligatorio"  
+                                                         validatorMessage="El Numero de Caracteres debe ser Menor que 11" maxlength="50" size="30" value="#{cUser.objectoRegistra.rut_usuario}" placeholder="Ingrese Rut de Usuario">
+                                            <f:validateLength minimum="3" maximum="10"/>
+                                            </p:inputText>
+                                        <p:message for="rut"/>
+                                        </h:panelGroup>                                        
+                                    
+                                   
+                                        <h:outputText value="Apellidos y Nombres*"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="apellidos_nombres" required="true" requiredMessage="Apellidos y Nombres es Obligatorio"  
+                                                         validatorMessage="El Numero de Caracteres debe ser Menor que 100" maxlength="50" size="100" value="#{cUser.objectoRegistra.apellidos_nombres}" placeholder="Ingrese Apellidos y Nombres de Usuario">
+                                            <f:validateLength minimum="3" maximum="100"/>
+                                            </p:inputText>
+                                        <p:message for="apellidos_nombres"/>
+                                        </h:panelGroup>                                        
+                                    
+                                    
+                                        <h:outputText value="Telefono"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="telefono" required="true" requiredMessage="Telefono es Obligatorio"  
+                                                         validatorMessage="El Numero de Caracteres debe ser Menor que 10" maxlength="50" size="30" value="#{cUser.objectoRegistra.telefono}" placeholder="Ingrese Telefono">
+                                            <f:validateLength minimum="3" maximum="10"/>
+                                            </p:inputText>
+                                        <p:message for="telefono"/>
+                                        </h:panelGroup>                                        
+                                    
+                                  
+                                        <h:outputText value="Dirección"/>
+                                        <h:panelGroup>
+                                            <p:inputText id="direccion" required="true" requiredMessage="Dirección es Obligatorio"  
+                                                         validatorMessage="El Numero de Caracteres debe ser Menor que 100" maxlength="50" size="100" value="#{cUser.objectoRegistra.direccion}" placeholder="Ingrese Dirección de Usuario">
+                                            <f:validateLength minimum="3" maximum="100"/>
+                                            </p:inputText>
+                                        <p:message for="direccion"/>
+                                        </h:panelGroup>                                        
+                                       </p:panelGrid>                                
+                                    <p:commandButton value="REGISTRAR" update="form_registrar" actionListener="#{cUser.doRegistrar()}" />
+                                </p:fieldset>
+                            </p:panel>
+                        </h:form>
+                    </p:tab>
+                    <!--<p:tab title="LISTAR">
+                         <h:form id="form_listar">
+                            <p:growl id="grow2" showDetail="true" sticky="true"/>
+                            <p:panel id="pnlistar" header="#{tx.tabListar}" styleClass="border">
+                                <p:commandButton id="btnnuevo" value="#{tx.btnNuevo}" update="form_listar" icon="ui-icon-document" actionListener="#{cArea.doLimpiarLista()}" />
+                                <p:commandButton id="btnlistar" value="#{tx.btnListar}" update="form_listar" icon="ui-icon-search" actionListener="#{cArea.doListar(0)}" />
+
+                                
+                                <p:dataTable var="are" value="#{cArea.arrayList}" rendered="#{cArea.size ne '0'}" rows="5" paginator="true"
+                                             widgetVar="t"      selectionMode="single" selection="#{cArea.objectoSelecciona}" rowKey="#{are.id_area}" id="tablaarea"  style=" font-size: small " >
+                                                                       
+                                    
+                                    <p:column headerText="#{tx.txtArea}" style="width:30px;text-align:  left">
+                                              <h:outputText value="#{are.area}"/>
+                                    </p:column>
+                                    <p:column headerText="#{tx.txtEstadoA}" style="width:2px;text-align: center">                                        
+                                        <h:outputText value="#{are.estado}" />
+                                    </p:column>
+                                    <p:rowExpansion>
+                                        <p:panelGrid columns="2">
+                                           
+                                            <h:outputText value="#{tx.txtArea}"/>
+                                            <h:outputText value="#{are.area}"/>
+                                            <h:outputText value="#{tx.txtEstadoA}"/>
+                                            <h:outputText value="#{are.estado}"/>
+                                        </p:panelGrid>
+                                    </p:rowExpansion>
+                                    <p:column style="width:10px;text-align:  left">
+                                        <p:commandButton  update=":tab:form_listar"
+                                                          actionListener="#{cArea.doSendArea(are)}"             oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                                        </p:commandButton>
+                                    </p:column>
+                                </p:dataTable>
+                                
+                                <p:dialog header="Editar" widgetVar="carDialog" showEffect="fade" hideEffect="fade" >
+                                            <p:outputPanel id="carDetail" style="text-align:center;">
+                                                <p:panelGrid  columns="2" rendered="#{not empty cArea.objectoSelecciona}" columnClasses="label,value">
+                                                    <f:facet name="header">
+                                                        <p:graphicImage value="/resources/images/loader.gif"/>
+                                                    </f:facet>
+                                                    
+                                                    <h:outputText value="Id Area" />
+                                                    <h:outputText value="#{cArea.objectoSelecciona.id_area}"/>
+                                                    <h:outputText value="Área"/>
+                                                    <h:inputText value="#{cArea.objectoSelecciona.area}" />
+                                                    <h:outputText value="Estado"/>
+                                                    <h:inputText value="#{cArea.objectoSelecciona.estado}" />
+                                                    <p:commandButton value="Actualizar" actionListener="#{cArea.doRegistrar()}" update="grow2">
+                                                                  <p:confirm header="Confirmation" message="Deseas Actualizar?" icon="ui-icon-alert" />
+                                                    </p:commandButton>                                                    
+                                                    <p:confirmDialog global="true" showEffect="fade">
+                                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"  />
+                                                    </p:confirmDialog>
+                                                </p:panelGrid>
+                                            </p:outputPanel>
+                                </p:dialog>
+                                
+                            </p:panel>
+                            
+                            <p:blockUI block="pnlistar" trigger="btnlistar">
+                                    Cargando......
+                                    <p:graphicImage value="/resources/images/loading01.gif"/>
+                            </p:blockUI>
+                        </h:form>
+                    </p:tab>-->
+                </p:tabView>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
